@@ -1,4 +1,4 @@
-export default [
+const movies = [
   {
     Title: "Race to Space",
     Year: "2001",
@@ -74,3 +74,5 @@ export default [
     Poster: "N/A",
   },
 ];
+
+export default movies;
