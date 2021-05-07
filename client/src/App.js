@@ -1,8 +1,14 @@
+import { useState } from "react";
+
 import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
+
 import movies from "./dummyData";
 
 function App() {
+  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
       <Navbar />
@@ -20,8 +26,22 @@ function App() {
           id="search"
           name="search"
           placeholder="Search"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+            setFilteredMovies(
+              movies.filter(
+                (movie) =>
+                  !searchTerm ||
+                  String(movie.Title + movie.Year /* + Plot + Director */)
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+              )
+            );
+            console.log(searchTerm);
+            console.log(filteredMovies);
+          }}
         ></input>
-        <MovieList movies={movies} />
+        <MovieList movies={filteredMovies} />
       </div>
     </>
   );

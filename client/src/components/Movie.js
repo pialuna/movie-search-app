@@ -8,9 +8,11 @@ const Movie = ({ movie }) => {
         {/* TO DO: N/A img src placeholder img */}
         <div>
           <h3>{movie.Title}</h3>
+          <h4 className="text-gray-500">{movie.Year}</h4>
           {/* TO DO */}
           <p>Director: </p>
           <p>Plot ...</p>
+          <p className="text-gray-400 text-xs">IMDB ID: {movie.imdbID}</p>
         </div>
       </div>
     </div>
