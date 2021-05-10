@@ -1,12 +1,22 @@
 const express = require("express");
+const morgan = require("morgan"); //for logging requests
+
+const fillDatabase = require("./fillDatabase");
+
+const app = express();
+const port = process.env.API_PORT || 1234;
+
+const moviesRoutes = require("./routes/movies");
 
 const movies = require("./dummyData.js");
 
-const app = express();
-const port = 1234;
-
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// fill the database
+// ???? naming
+fillDatabase.fillDatabase();
 
 // against Cross-Origin Resource Sharing (CORS)-Errors  ->  different clients can have access
 app.use((req, res, next) => {
@@ -22,14 +32,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes here
-app.get("/", (req, res) => {
-  try {
-    res.json(movies);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// Routes
+app.use("/movies", moviesRoutes);
 
 // Error Handling
 app.use((req, res, next) => {
