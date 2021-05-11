@@ -29,6 +29,7 @@ function App() {
         <h5 className="text-gray-400">
           (Movies from 2001 whose title contains "Space")
         </h5>
+
         <label className="sr-only" htmlFor="search">
           Search for movies
         </label>
@@ -44,16 +45,15 @@ function App() {
               movies.filter(
                 (movie) =>
                   !searchTerm ||
-                  String(movie.title + movie.year + movie.director + movie.plot)
+                  String(movie.title + movie.director + movie.plot)
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase())
               )
             );
-            console.log(searchTerm);
-            console.log(filteredMovies);
           }}
         ></input>
-        <MovieList movies={filteredMovies} />
+
+        <MovieList movies={searchTerm.length < 1 ? movies : filteredMovies} />
       </div>
     </>
   );
