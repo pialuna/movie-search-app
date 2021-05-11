@@ -26,7 +26,7 @@ module.exports = {
       for (movieObject of movieObjects) {
         // ?????
         const movie = await movieObject.save();
-        console.log("createdMovie: ", movie);
+        console.log("created movie: ", movie);
         // res.status(201).json({
         //   message: "Created Movie successfully",
         //   createdMovie: movie,

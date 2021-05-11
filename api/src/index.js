@@ -1,22 +1,28 @@
 const express = require("express");
+require("dotenv").config();
 const morgan = require("morgan"); //for logging requests
+const mongoose = require("mongoose");
 
+const moviesRoutes = require("./routes/movies");
 const fillDatabase = require("./fillDatabase");
-
 const app = express();
 const port = process.env.API_PORT || 1234;
 
-const moviesRoutes = require("./routes/movies");
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.Promise = global.Promise;
 
-const movies = require("./dummyData.js");
+// fill the database
+// ???? naming
+// ??? await
+fillDatabase.fillDatabase();
+console.log("joooooooo");
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// fill the database
-// ???? naming
-fillDatabase.fillDatabase();
 
 // against Cross-Origin Resource Sharing (CORS)-Errors  ->  different clients can have access
 app.use((req, res, next) => {
