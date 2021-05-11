@@ -8,7 +8,7 @@ const MovieList = ({ movies }) => {
       <ul>
         {movies.map((movie) => {
           return (
-            <li key={movie.imdbID}>
+            <li key={movie._id}>
               <Movie movie={movie} />
             </li>
           );

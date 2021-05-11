@@ -10,10 +10,8 @@ router.get("/", async (req, res) => {
     const response = {
       count: docs.length,
       movies: docs.map((doc) => {
-        return {
-          movie: doc,
-          url: "http://localhost:1234/movies/" + doc._id,
-        };
+        //doc.url = "http://localhost:1234/movies/" + doc._id;
+        return doc;
       }),
     };
     res.status(200).json(response);

@@ -3,18 +3,20 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
 
+const url = "http://localhost:1234/movies/";
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState(movies);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // api calls
+  // api call
   useEffect(() => {
     async function fetchMovies() {
-      const response = await fetch("http://localhost:1234/");
+      const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
-      setMovies(data);
+      console.log(data.movies);
+      setMovies(data.movies);
     }
     fetchMovies();
   }, []);
@@ -42,7 +44,7 @@ function App() {
               movies.filter(
                 (movie) =>
                   !searchTerm ||
-                  String(movie.Title + movie.Year /* + Plot + Director */)
+                  String(movie.title + movie.year + movie.director + movie.plot)
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase())
               )
