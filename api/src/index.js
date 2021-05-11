@@ -16,9 +16,7 @@ mongoose.Promise = global.Promise;
 
 // fill the database
 // ???? naming
-// ??? await
-fillDatabase.fillDatabase();
-console.log("joooooooo");
+// fillDatabase.fillDatabase();
 
 app.use(morgan("dev"));
 app.use(express.json());

@@ -4,10 +4,19 @@ const router = express.Router();
 
 const Movie = require("../models/movie");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    // res.json(movies);
-    // console.log(fetchData.getData());
+    const docs = await Movie.find();
+    const response = {
+      count: docs.length,
+      movies: docs.map((doc) => {
+        return {
+          movie: doc,
+          url: "http://localhost:1234/movies/" + doc._id,
+        };
+      }),
+    };
+    res.status(200).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -15,8 +24,39 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   try {
-    // to do: find movie
-    res.json(movie);
+    res
+      .status(200)
+      .json({ message: "GET /movie/:id is currently not implemented" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.delete("/:id", (req, res) => {
+  try {
+    res
+      .status(200)
+      .json({ message: "DELETE /movie/:id is currently not implemented" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.patch("/:id", (req, res) => {
+  try {
+    res
+      .status(200)
+      .json({ message: "PATCH /movie/:id is currently not implemented" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.put("/:id", (req, res) => {
+  try {
+    res
+      .status(200)
+      .json({ message: "PUT /movie/:id is currently not implemented" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
