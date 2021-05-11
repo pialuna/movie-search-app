@@ -14,9 +14,8 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 mongoose.Promise = global.Promise;
 
-// fill the database
-// ???? naming
-// fillDatabase.fillDatabase();
+// empty the database and then fill it freshly
+fillDatabase();
 
 app.use(morgan("dev"));
 app.use(express.json());
