@@ -25,11 +25,7 @@ function App() {
     <>
       <Navbar />
       <div className="m-5 flex flex-col items-start">
-        <h1>Movies</h1>
-        <h5 className="text-gray-400">
-          (Movies from 2001 whose title contains "Space")
-        </h5>
-
+        <h1>Space Movies from 2001</h1>
         <label className="sr-only" htmlFor="search">
           Search for movies
         </label>
