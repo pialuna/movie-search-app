@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const morgan = require("morgan"); //for logging requests
+const morgan = require("morgan"); // for logging requests
 const mongoose = require("mongoose");
 
 const moviesRoutes = require("./routes/movies");
